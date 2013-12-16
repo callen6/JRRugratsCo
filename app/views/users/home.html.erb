@@ -1,0 +1,34 @@
+<%= stylesheet_link_tag    "home" %>
+<div id="background">
+    <img src="http://farm5.staticflickr.com/4022/4268061790_0eb536b25f_o.jpg" class="stretch" alt="" />
+</div>
+
+<div class="home-container">
+
+
+	<div class="row">
+	  <div class="small-12 columns">
+	  	<h1>Property Maintenance Request Manger</h1>
+	  </div>
+	</div>
+
+
+	<div class="row">
+	 <div class="small-12 columns">
+	  	<h3>Submit and track maintenance requests for your JR Rugrats & Co unit.</h3>
+	  </div>
+	</div>
+
+
+	<div class="row">
+		<div class="small-7 columns">
+			<%= link_to "Log In to Make a New Maintenance Request", new_user_session_path, class: "button large" %>
+		</div>
+		<div class="small-2 columns">
+		<h1> or </h1>
+		</div>
+		<div class="small-3 columns">
+		<%= link_to "Sign Up", new_user_registration_path, class: "button large"  %>
+		</div>
+	</div>
+</div>
