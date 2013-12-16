@@ -1,5 +1,6 @@
 JRRugratsCo::Application.routes.draw do
-  root 'user#home'
+  devise_for :users
+  root 'users#home'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
