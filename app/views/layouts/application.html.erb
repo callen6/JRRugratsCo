@@ -26,17 +26,17 @@
       <li class="active"><a href="#"><%= "Contact Us" %></a></li>
     <% if user_signed_in? %>
     <li class="has-dropdown">
-      <a href="#">Logged in as <strong><%= current_user.email %></strong>.</a>
+      <a href="#">Signed in as <strong><%= current_user.email %></strong>.</a>
         <ul class="dropdown">
           <li><a href="#"><%= link_to 'Edit profile', edit_user_registration_path %></a></li>
-          <li><a href="#"><%= link_to "Logout", destroy_user_session_path, method: :delete %></a></li>
+          <li><a href="#"><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></a></li>
         </ul>
     </li>
     <% else %>
     <li class="has-dropdown">
-      <a href="#">Current User Not Logged In</a>
+      <a href="#">Current User Not Signed In</a>
       <ul class="dropdown">
-          <li><a href="#"><%= link_to "Log In", new_user_session_path %></a></li>
+          <li><a href="#"><%= link_to "Sign In", new_user_session_path %></a></li>
           <li><a href="#"><%= link_to "Sign Up", new_user_registration_path %></a></li>
       </ul>
     </li>
