@@ -1,12 +1,34 @@
 <%= form_for(@issue) do |f| %>
-  <%= f.label :location %>:
+<div class="row">
+	<div class="small-12 columns">
+  <%= f.label :location, "Where in the unit or building is the issue located?" %>
   <%= f.text_field :location %><br />
-
-  <%= f.label :description %>:
+  </div>
+</div>
+<div class="row">
+	<div class="small-12 columns">
+  <%= f.label :description, "Please describe the issue in as much detail as possible." %>
   <%= f.text_field :description %><br />
-
-  <%= f.label :tenant_notes %>:
+  </div>
+</div>
+<div class="row">
+	<div class="small-6 columns">
+  <%= f.label :tenant_notes, "Do you have any other important notes for our maintenance team?" %>
   <%= f.text_field :tenant_notes %><br />
-
-  <%= f.submit %>
+  </div>
+	<div class="small-6 columns">
+	<div>How would rate the priority level of this issue?</div><br />
+	<%= f.radio_button(:priority, 3) %>
+	<%= f.label(:priority, "Low") %>
+	<%= f.radio_button(:priority, 2) %>
+	<%= f.label(:priority, "Medium") %>
+	<%= f.radio_button(:priority, 1) %>
+	<%= f.label(:priority, "High") %>
+	</div>
+</div>
+<div class="row">
+	<div class="small-12 columns">
+  <%= f.submit "Make Request", class: "button" %>
+  </div>
+</div>
 <% end %>
