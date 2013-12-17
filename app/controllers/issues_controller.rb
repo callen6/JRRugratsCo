@@ -18,12 +18,16 @@ class IssuesController < ApplicationController
 	end
 
 	def update
-  if @issue.update(issue_params)
-    redirect_to @issue
-  else
-    render action: 'edit'
-  end
-end
+	  if @issue.update(issue_params)
+	    redirect_to @issue
+	  else
+	    render action: 'edit'
+	  end
+	end
+
+	def index
+		@issues = current_user.issues
+	end
 
 	private
 	def set_issue

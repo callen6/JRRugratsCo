@@ -1,0 +1,27 @@
+<div class="row">
+	<div class="small-12 columns">
+			<h1>Check Your Maintenance Request Status:</h1>
+	</div>
+</div>
+<div class="issue_status_container">
+	<% @issues.each do |issue| %>
+	<div class="row">
+		<div class="small-3 columns">
+			<% if issue.status.nil? %>
+				<%= "Issue submitted" %>
+			<% else %>
+				<%= issue.status %>
+			<% end %>
+		</div>
+		<div class="small-3 columns">
+			<%= issue.description %>
+		</div>
+		<div class="small-3 columns">
+			<%= issue.location %>
+		</div>
+		<div class="small-3 columns">
+			<%= issue.tenant_notes %>
+		</div>
+	</div>
+	<% end %>
+</div>
