@@ -4,6 +4,16 @@
 	</div>
 </div>
 <div class="issue_status_container">
+<% if @issues.empty? %>
+<div class="row">
+	<div class="small-7 columns">
+	You have no maintenance requests yet.
+	</div>
+	<div class="small-5 columns">
+	<%= link_to "Make a Maintenance Request", new_issue_path, class: "button medium" %>
+	</div>
+</div>
+<% else %>
 	<% @issues.each do |issue| %>
 	<div class="row">
 		<div class="small-3 columns">
@@ -24,4 +34,5 @@
 		</div>
 	</div>
 	<% end %>
+<% end %>
 </div>
