@@ -1,5 +1,7 @@
 JRRugratsCo::Application.routes.draw do
+  devise_for :admins
   devise_for :users
+  get 'admin/home', to: 'admins#home', as: 'admin_home'
   root 'users#home'
   resources :issues
 
