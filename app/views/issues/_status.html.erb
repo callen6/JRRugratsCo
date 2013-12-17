@@ -1,0 +1,32 @@
+
+<% if @issues.empty? %>
+<div class="row">
+	<div class="small-7 columns">
+	You have no maintenance requests yet.
+	</div>
+	<div class="small-5 columns">
+	<%= link_to "Make a Maintenance Request", new_issue_path, class: "button medium" %>
+	</div>
+</div>
+<% else %>
+	<% @issues.sort_by(&:priority).each do |issue| %>
+	<div class="row">
+		<div class="small-3 columns">
+			<% if issue.status.nil? %>
+				<%= "Request Submitted" %>
+			<% else %>
+				<%= issue.status %>
+			<% end %>
+		</div>
+		<div class="small-3 columns">
+			<%= issue.description %>
+		</div>
+		<div class="small-3 columns">
+			<%= issue.location %>
+		</div>
+		<div class="small-3 columns">
+			<%= issue.tenant_notes %>
+		</div>
+	</div>
+	<% end %>
+<% end %>

@@ -3,36 +3,26 @@
 			<h1>Check Your Maintenance Request Status:</h1>
 	</div>
 </div>
-<div class="issue_status_container">
-<% if @issues.empty? %>
 <div class="row">
-	<div class="small-7 columns">
-	You have no maintenance requests yet.
+	<div class="small-3 columns">
+	<h3>Request Status</h3>
 	</div>
-	<div class="small-5 columns">
-	<%= link_to "Make a Maintenance Request", new_issue_path, class: "button medium" %>
+	<div class="small-3 columns">
+	<h3>Issue Description</h3>
+	</div>
+	<div class="small-3 columns">
+	<h3>Issue Location</h3>
+	</div>
+	<div class="small-3 columns">
+	<h3>Notes</h3>
 	</div>
 </div>
-<% else %>
-	<% @issues.each do |issue| %>
-	<div class="row">
-		<div class="small-3 columns">
-			<% if issue.status.nil? %>
-				<%= "Issue submitted" %>
-			<% else %>
-				<%= issue.status %>
-			<% end %>
-		</div>
-		<div class="small-3 columns">
-			<%= issue.description %>
-		</div>
-		<div class="small-3 columns">
-			<%= issue.location %>
-		</div>
-		<div class="small-3 columns">
-			<%= issue.tenant_notes %>
-		</div>
+<div class="issue_status_container">
+	<%= render "status" %>
+</div>
+<br>
+<div class="row">
+	<div class="small-12 columns">
+	<%= link_to "Make Another Maintenance Request", new_issue_path, class: "button" %>
 	</div>
-	<% end %>
-<% end %>
 </div>
