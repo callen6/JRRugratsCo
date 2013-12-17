@@ -1,7 +1,7 @@
 JRRugratsCo::Application.routes.draw do
   devise_for :users
   root 'users#home'
-  get '/issues/new', to: 'issues#create', as: 'new_issue'
+  resources :issues
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
