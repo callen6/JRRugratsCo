@@ -13,31 +13,6 @@
   </head>
 
   <body>
-<% if admin_signed_in? %>
-
-<nav class="top-bar" data-topbar>
-  <ul class="title-area">
-    <li class="name">
-      <h1><a href="#"><%= link_to "JR Rugrats & Co  Maintenenance Request Manager", root_url %></a></h1>
-    </li>
-  </ul>
-
-  <section class="top-bar-section">
-    <!-- Right Nav Section -->
-    <ul class="right">
-      <li class="active"><a href="#"><%= link_to "Manage Pending Maintenance Requests", admin_home_path %></a></li>
-    <li class="has-dropdown">
-      <a href="#">Signed in as <strong><%= current_admin.email %></strong>.</a>
-        <ul class="dropdown">
-          <li><a href="#"><%= link_to 'Edit profile', edit_admin_registration_path %></a></li>
-          <li><a href="#"><%= link_to "Sign Out", destroy_admin_session_path, method: :delete %></a></li>
-        </ul>
-    </li>
-    </ul>
-  </section>
-</nav>
-
-<% else %>
 
 <nav class="top-bar" data-topbar>
   <ul class="title-area">
@@ -51,13 +26,28 @@
     <ul class="right">
       <li class="active"><a href="#"><%= "Contact Us" %></a></li>
     <% if user_signed_in? %>
-    <li class="has-dropdown">
-      <a href="#">Signed in as <strong><%= current_user.email %></strong>.</a>
-        <ul class="dropdown">
-          <li><a href="#"><%= link_to 'Edit profile', edit_user_registration_path %></a></li>
-          <li><a href="#"><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></a></li>
-        </ul>
-    </li>
+      <% if current_user.admin? %>
+            <ul class="right">
+              <li class="active"><a href="#"><%= link_to "Manage Pending Maintenance Requests", issues_path %></a></li>
+            <li class="has-dropdown">
+              <a href="#">Signed in as <strong><%= current_user.email %></strong>.</a>
+                <ul class="dropdown">
+                  <li><a href="#"><%= link_to 'Edit profile', edit_user_registration_path %></a></li>
+                  <li><a href="#"><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></a></li>
+                </ul>
+            </li>
+            </ul>
+          </section>
+        </nav>
+      <% else %>
+        <li class="has-dropdown">
+          <a href="#">Signed in as <strong><%= current_user.email %></strong>.</a>
+            <ul class="dropdown">
+              <li><a href="#"><%= link_to 'Edit profile', edit_user_registration_path %></a></li>
+              <li><a href="#"><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></a></li>
+            </ul>
+        </li>
+      <% end %>
     <% else %>
     <li class="has-dropdown">
       <a href="#">Current User Not Signed In</a>
@@ -72,7 +62,6 @@
   </section>
 </nav>
 
-<% end %>
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
