@@ -2,35 +2,41 @@
 
 <div class="row">
 	<div class="small-12 columns">
-	Maintenance request made on ___ by ___.
+	<h1>Maintenance request made on <%= @issue.created_at.to_formatted_s(:long) %> by <%= @issue.user.email %></h1>
+	</div>
+</div>
+<br/>
+<div class="row">
+		<div class="small-4 columns">
+		<h3>Issue Description</h3>
+		</div>
+		<div class="small-4 columns">
+		<h3>Issue Location</h3>
+		</div>
+		<div class="small-4 columns">
+		<h3>Tenant Notes</h3>
+		</div>
+	</div>
+<div class="row">
+	<div class="small-4 columns">
+	<%= @issue.description %>
+	</div>
+	<div class="small-4 columns">
+	<%= @issue.location %>
+	</div>
+	<div class="small-4 columns">
+	<%= @issue.tenant_notes %>
 	</div>
 </div>
 
+<br />
+
 <div class="row">
-		<div class="small-3 columns">
-		<h3>Issue Description</h3>
-		</div>
-		<div class="small-3 columns">
-		<h3>Issue Location</h3>
-		</div>
-		<div class="small-3 columns">
-		<h3>Tenant Notes</h3>
-		</div>
-		<div class="small-3 columns">
-		<h3>Admin Notes</h3>
-		</div>
+	<div class="small-6 columns">
+		Assign the request to:
+		choose contractor
 	</div>
-<div class="row">
-	<div class="small-3 columns">
-	<%= @issue.description %>
-	</div>
-	<div class="small-3 columns">
-	<%= @issue.location %>
-	</div>
-	<div class="small-3 columns">
-	<%= @issue.tenant_notes %>
-	</div>
-	<div class="small-3 columns">
+	<div class="small-6 columns">
 	<% if @issue.admin_notes.blank? %>
 		<%= form_for(@issue) do |f| %>
 			<%= f.label :admin_notes, "add some notes" %>
@@ -48,54 +54,53 @@
 	</div>
 </div>
 
-<br />
 
-<div class="row">
-	<div class="small-6 columns">
-		Assign the request to:
-		choose contractor
-		notes for jamie
-	</div>
-	<div class="small-6 columns">
-	<%= link_to "Text " + "#{@issue.id}" , issue_path, class: "button large" %>
-	</div>
-</div>
-
-
-	<%= form_for(@issue) do |f| %>
-<div class="row">
-	<div class="small-6 columns">
-		<%= f.label :cost, "How much did it cost to resolve the request?" %>
-	  <%= f.number_field :cost %>
-	</div>
-	<div class="small-6 columns">
-		<br />
-	  <%= f.submit "Update Cost", class: "button small" %>
-	</div>
-</div>
-	<% end %>
-
-
-
-	<%= form_for(@issue) do |f| %>
-		<br />
 <div class="row">
 	<div class="small-12 columns">
+		<h3>Request Status</h3>
+
+<% if @issue.status.nil? %>
+<div><%= "Request submitted" %></div>
+<br />
+<%= form_for(@issue) do |f| %>
+	<div><%= f.radio_button(:status, "Request received") %>
+		<%= f.label(:status, "Request received")  %></div>
+	<div><%= f.radio_button(:status, "Maintenance in progress")  %>
+		<%= f.label(:status, "Maintenance in progress") %></div>
+	<div><%= f.radio_button(:status, "Completed") %>
+		<%= f.label(:status, "Completed") %></div>
+	<div><%= f.submit "Update Status", class: "button tiny" %></div>
+	<% end %>
+<% else %>
+	<%= form_for(@issue) do |f| %>
 		<div><%= f.radio_button(:status, "Request received") %>
 			<%= f.label(:status, "Request received")  %></div>
 		<div><%= f.radio_button(:status, "Maintenance in progress")  %>
 			<%= f.label(:status, "Maintenance in progress") %></div>
 		<div><%= f.radio_button(:status, "Completed") %>
 			<%= f.label(:status, "Completed") %></div>
+		<div><%= f.submit "Update Status", class: "button small" %></div>
+	<% end %>
+	</div>
+</div>
+<% end %>
+
+
+<div class="row">
+	<div class="small-12 columns">
+	<%= form_for(@issue) do |f| %>
+		<%= f.label :cost, "How much did it cost to resolve the request?" %>
+	  <%= f.number_field :cost %>
+		<br />
+	  <%= f.submit "Update Cost", class: "button small" %>
+	<% end %>
 	</div>
 </div>
 <div class="row">
 	<div class="small-12 columns">
-		<div><%= f.submit "Update Status", class: "button tiny" %></div>
-		<br />
+		<%= link_to "Text " + "#{@issue.id}" , issue_path, class: "button small" %>
 	</div>
 </div>
-	<% end %>
 <% else %>
 	<div class="row">
 		  <div class="small-12 columns">

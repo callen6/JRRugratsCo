@@ -24,7 +24,6 @@
   <section class="top-bar-section">
     <!-- Right Nav Section -->
     <ul class="right">
-      <li class="active"><a href="#"><%= "Contact Us" %></a></li>
     <% if user_signed_in? %>
       <% if current_user.admin? %>
             <ul class="right">
@@ -40,6 +39,7 @@
           </section>
         </nav>
       <% else %>
+        <li class="active"><a href="#"><%= "Contact Us" %></a></li>
         <li class="has-dropdown">
           <a href="#">Signed in as <strong><%= current_user.email %></strong>.</a>
             <ul class="dropdown">
@@ -49,6 +49,7 @@
         </li>
       <% end %>
     <% else %>
+    <li class="active"><a href="#"><%= "Contact Us" %></a></li>
     <li class="has-dropdown">
       <a href="#">Current User Not Signed In</a>
       <ul class="dropdown">

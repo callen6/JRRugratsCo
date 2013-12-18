@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131218152800) do
+ActiveRecord::Schema.define(version: 20131218213047) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "buildings", force: true do |t|
     t.text    "address"
@@ -36,6 +39,7 @@ ActiveRecord::Schema.define(version: 20131218152800) do
     t.integer  "building_id"
     t.integer  "user_id"
     t.integer  "priority",        default: 0
+    t.datetime "created_at"
   end
 
   add_index "issues", ["building_id"], name: "index_issues_on_building_id", using: :btree

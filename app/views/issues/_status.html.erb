@@ -9,7 +9,7 @@
 	</div>
 </div>
 <% else %>
-	<% @issues.sort_by(&:priority).each do |issue| %>
+	<% @issues.each do |issue| %>
 	<div class="row">
 		<div class="small-3 columns">
 			<% if issue.status.nil? %>

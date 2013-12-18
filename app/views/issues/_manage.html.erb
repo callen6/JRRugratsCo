@@ -5,39 +5,12 @@
 	</div>
 </div>
 <% else %>
-	<% @admin_issues.sort_by(&:priority).each do |issue| %>
+	<% @admin_issues.each do |issue| %>
 	<div class="row">
-		<div class="small-3 columns">
-			<% if issue.status.nil? %>
-				<%= "Request submitted" %>
-				<%= form_for(Issue.find_by(id: issue.id)) do |f| %>
-					<br />
-					<div><%= f.radio_button(:status, "Request received") %>
-						<%= f.label(:status, "Request received")  %></div>
-					<div><%= f.radio_button(:status, "Maintenance in progress")  %>
-						<%= f.label(:status, "Maintenance in progress") %></div>
-					<div><%= f.radio_button(:status, "Completed") %>
-						<%= f.label(:status, "Completed") %></div>
-					<div><%= f.submit "Update Status", class: "button tiny" %></div>
-					<br />
-				<% end %>
-			<% else %>
-				<%= issue.status %>
-				<%= form_for(Issue.find_by(id: issue.id)) do |f| %>
-					<br />
-					<div><%= f.radio_button(:status, "Request received") %>
-						<%= f.label(:status, "Request received")  %></div>
-					<div><%= f.radio_button(:status, "Maintenance in progress")  %>
-						<%= f.label(:status, "Maintenance in progress") %></div>
-					<div><%= f.radio_button(:status, "Completed") %>
-						<%= f.label(:status, "Completed") %></div>
-					<div><%= f.submit "Update Status", class: "button tiny" %></div>
-					<br />
-				<% end %>
-			<% end %>
+		<div class="small-1 columns">
+		<%= "#{issue.priority}" %>
 		</div>
-		<%= "#{}" %>
-		<div class="small-6 columns">
+		<div class="small-11 columns">
 			<%= link_to "Manage This Request", "/issues/" + "#{issue.id}" , class: "button large" %>
 		</div>
 	</div>
