@@ -1,19 +1,116 @@
+<% if current_user.admin? %>
 
 <div class="row">
-	  <div class="small-12 columns">
-	  	<h1>Confirmation # <%= @issue.id %></h1>
-	  </div>
+	<div class="small-12 columns">
+	Maintenance request made on ___ by ___.
+	</div>
 </div>
+
 <div class="row">
-	  <div class="small-12 columns">
-	  <h3>Your request has been submitted successfully.</h3>
-		<p>Thank you for alerting us to your issue. We will contact you soon with a plan to get your maintenance problem solved.</p>
+		<div class="small-3 columns">
+		<h3>Issue Description</h3>
+		</div>
+		<div class="small-3 columns">
+		<h3>Issue Location</h3>
+		</div>
+		<div class="small-3 columns">
+		<h3>Tenant Notes</h3>
+		</div>
+		<div class="small-3 columns">
+		<h3>Admin Notes</h3>
+		</div>
+	</div>
+<div class="row">
+	<div class="small-3 columns">
+	<%= @issue.description %>
+	</div>
+	<div class="small-3 columns">
+	<%= @issue.location %>
+	</div>
+	<div class="small-3 columns">
+	<%= @issue.tenant_notes %>
+	</div>
+	<div class="small-3 columns">
+	<% if @issue.admin_notes.blank? %>
+		<%= form_for(@issue) do |f| %>
+			<%= f.label :admin_notes, "add some notes" %>
+	  	<%= f.text_field :admin_notes %>
+	  	<%= f.submit "Add Notes", class: "button tiny" %>
+		<% end %>
+	<% else %>
+		<%= @issue.admin_notes %>
+		<%= form_for(@issue) do |f| %>
+			<%= f.label :admin_notes %>
+	  	<%= f.text_field :admin_notes %>
+	  	<%= f.submit "Add Notes", class: "button tiny" %>
+		<% end %>
+	<% end %>
+	</div>
+</div>
+
+<br />
+
+<div class="row">
+	<div class="small-6 columns">
+		Assign the request to:
+		choose contractor
+		notes for jamie
+	</div>
+	<div class="small-6 columns">
+	<%= link_to "Text " + "#{@issue.id}" , issue_path, class: "button large" %>
+	</div>
+</div>
+
+
+	<%= form_for(@issue) do |f| %>
+<div class="row">
+	<div class="small-6 columns">
+		<%= f.label :cost, "How much did it cost to resolve the request?" %>
+	  <%= f.number_field :cost %>
+	</div>
+	<div class="small-6 columns">
+		<br />
+	  <%= f.submit "Update Cost", class: "button small" %>
+	</div>
+</div>
+	<% end %>
+
+
+
+	<%= form_for(@issue) do |f| %>
+		<br />
+<div class="row">
+	<div class="small-12 columns">
+		<div><%= f.radio_button(:status, "Request received") %>
+			<%= f.label(:status, "Request received")  %></div>
+		<div><%= f.radio_button(:status, "Maintenance in progress")  %>
+			<%= f.label(:status, "Maintenance in progress") %></div>
+		<div><%= f.radio_button(:status, "Completed") %>
+			<%= f.label(:status, "Completed") %></div>
 	</div>
 </div>
 <div class="row">
-	<%= link_to "Check Status of Pending Issues", issues_path, class: "button" %>
-	<%= link_to "Make Another Maintenance Request", new_issue_path, class: "button" %>
-	<%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "button" %>
+	<div class="small-12 columns">
+		<div><%= f.submit "Update Status", class: "button tiny" %></div>
+		<br />
+	</div>
 </div>
-
-
+	<% end %>
+<% else %>
+	<div class="row">
+		  <div class="small-12 columns">
+		  	<h1>Confirmation # <%= @issue.id %></h1>
+		  </div>
+	</div>
+	<div class="row">
+		  <div class="small-12 columns">
+		  <h3>Your request has been submitted successfully.</h3>
+			<p>Thank you for alerting us to your issue. We will contact you soon with a plan to get your maintenance problem solved.</p>
+		</div>
+	</div>
+	<div class="row">
+		<%= link_to "Check Status of Pending Issues", issues_path, class: "button" %>
+		<%= link_to "Make Another Maintenance Request", new_issue_path, class: "button" %>
+		<%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "button" %>
+	</div>
+<% end %>

@@ -36,14 +36,9 @@
 				<% end %>
 			<% end %>
 		</div>
-		<div class="small-3 columns">
-			<%= issue.description %>
-		</div>
-		<div class="small-3 columns">
-			<%= issue.location %>
-		</div>
-		<div class="small-3 columns">
-			<%= issue.tenant_notes %>
+		<%= "#{}" %>
+		<div class="small-6 columns">
+			<%= link_to "Manage This Request", "/issues/" + "#{issue.id}" , class: "button large" %>
 		</div>
 	</div>
 	<% end %>
