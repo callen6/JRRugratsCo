@@ -17,9 +17,12 @@ class IssuesController < ApplicationController
 	def show
 	end
 
+	def edit
+	end
+
 	def update
 	  if @issue.update(issue_params)
-	    redirect_to @issue
+	    redirect_to '/issues'
 	  else
 	    render action: 'edit'
 	  end
@@ -27,6 +30,7 @@ class IssuesController < ApplicationController
 
 	def index
 		@issues = current_user.issues
+		@admin_issues = Issue.all
 	end
 
 	private
@@ -35,6 +39,6 @@ class IssuesController < ApplicationController
 	end
 # does not permit user_id to be injected
 	def issue_params
- 		params.require(:issue).permit(:description, :location, :tenant_notes)
+ 		params.require(:issue).permit(:description, :location, :tenant_notes, :status)
 	end
 end
