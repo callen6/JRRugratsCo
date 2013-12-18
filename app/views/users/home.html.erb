@@ -1,8 +1,3 @@
-<div id="background">
-    <img src="http://farm5.staticflickr.com/4022/4268061790_0eb536b25f_o.jpg" class="stretch" alt="" />
-</div>
-
-
 <div class="home-container">
 
 	<div class="row">
@@ -11,18 +6,26 @@
 	  </div>
 	</div>
 
-<% if user_signed_in? %>
-<div class="row">
-		<div class="small-5 columns">
-			<%= link_to "Make a New Maintenance Request", new_issue_path, class: "button large" %>
+<% if user_signed_in?  %>
+	<% if current_user.admin? %>
+		<div class="row">
+			<div class="small-12 columns">
+				<%= link_to "Manage Pending Maintenance Requests", issues_path, class: "button large" %>
+			</div>
 		</div>
-		<div class="small-1 columns">
-		<h2> or </h2>
+	<% else %>
+		<div class="row">
+			<div class="small-5 columns">
+				<%= link_to "Make a New Maintenance Request", new_issue_path, class: "button large" %>
+			</div>
+			<div class="small-1 columns">
+			<h2> or </h2>
+			</div>
+			<div class="small-6 columns">
+			<%= link_to "Check Status of Pending Requests", issues_path, class: "button large"  %>
+			</div>
 		</div>
-		<div class="small-6 columns">
-		<%= link_to "Check Status of Pending Requests", issues_path, class: "button large"  %>
-		</div>
-	</div>
+	<% end %>
 <% else %>
 	<div class="row">
 		<div class="small-6 columns">
