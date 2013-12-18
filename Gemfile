@@ -34,6 +34,8 @@ gem 'foundation-rails'
 
 gem 'devise'
 
+gem 'activerecord-session_store'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
