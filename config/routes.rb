@@ -3,6 +3,7 @@ JRRugratsCo::Application.routes.draw do
   root 'users#home'
   resources :issues
   resources :buildings
+  resources :contractors
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

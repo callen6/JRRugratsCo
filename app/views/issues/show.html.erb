@@ -30,13 +30,42 @@
 </div>
 
 <br />
+<% if @issue.contractor_id.blank? %>
+	<div class="row">
+		<div class="small-6 columns">
+		<%= form_for(@issue) do |f| %>
+	 		<%= f.label :contractor, "Assign this maintenance request to:" %>
+	    <%=collection_select(:issue, :contractor_id, Contractor.all, :id, :full_name, prompt: true)%>
+	  </div>
+	  <div class="small-6 columns">
+	  <br />
+	    <%= f.submit "Assign Contractor", class: "button small" %>
+	  <% end %>
+	  </div>
+	</div>
+	<% else %>
+	<div class="row">
+		<div class="small-5 columns">
+			Request is currently assigned to:
+			<br/>
+			<br/>
+			<%= @issue.contractor.full_name %>
+		</div>
+		<div class="small-4 columns">
+		<%= form_for(@issue) do |f| %>
+	 		<%= f.label :contractor, "Re-assign this maintenance request to:" %>
+	    <%=collection_select(:issue, :contractor_id, Contractor.all, :id, :full_name, prompt: true)%>
+	  </div>
+	  <div class="small-3 columns">
+	  <br />
+	    <%= f.submit "Re-assign Contractor", class: "button tiny" %>
+	  <% end %>
+	  </div>
+	</div>
+<% end %>
 
 <div class="row">
-	<div class="small-6 columns">
-		Assign the request to:
-		choose contractor
-	</div>
-	<div class="small-6 columns">
+	<div class="small-12 columns">
 	<% if @issue.admin_notes.blank? %>
 		<%= form_for(@issue) do |f| %>
 			<%= f.label :admin_notes, "add some notes" %>

@@ -1,0 +1,45 @@
+<% if current_user.admin? %>
+<div class="row">
+	<div class="small-12 columns">
+	<h1>Jr Rugrats & Co Maintenance Contractors</h1>
+	</div>
+</div>
+<div class="row">
+	<div class="small-3 columns">
+		<h2>Contractor </h2>
+	</div>
+	<div class="small-3 columns">
+		<h2>Phone</h2>
+	</div>
+	<div class="small-4 columns">
+		<h2>Email</h2>
+	</div>
+	<div class="small-2 columns">
+		<h2>Remove</h2>
+	</div>
+</div>
+<% @contractors.each do |contractor| %>
+<div class="row">
+	<div class="small-3 columns">
+		<%= contractor.full_name %>
+	</div>
+	<div class="small-3 columns">
+		<%= contractor.phone_number %>
+	</div>
+	<div class="small-4 columns">
+		<%= contractor.email %>
+	</div>
+	<div class="small-2 columns">
+		<%= button_to "Remove", contractor_path(contractor), method: :delete, class: "button tiny" %>
+	</div>
+</div>
+<% end %>
+<br>
+<div class="row">
+	<div class="small-12 columns">
+		<%= link_to "Add New Contractor", new_contractor_path, class: "button medium" %>
+	</div>
+</div>
+<% else %>
+	Only admins have access to this view.
+<% end %>

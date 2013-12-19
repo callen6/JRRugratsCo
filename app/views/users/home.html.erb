@@ -9,11 +9,14 @@
 <% if user_signed_in?  %>
 	<% if current_user.admin? %>
 		<div class="row">
-			<div class="small-6 columns">
-				<%= link_to "Manage Pending Maintenance Requests", issues_path, class: "button large" %>
+			<div class="small-4 columns">
+				<%= link_to "Manage Maintenance Requests", issues_path, class: "button" %>
 			</div>
-			<div class="small-3 columns">
-				<%= link_to "Manage Buildings", buildings_path, class: "button large" %>
+			<div class="small-4 columns">
+				<%= link_to "Manage Buildings", buildings_path, class: "button" %>
+			</div>
+			<div class="small-4 columns">
+				<%= link_to "Manage Contractors", contractors_path, class: "button" %>
 			</div>
 		</div>
 	<% else %>
