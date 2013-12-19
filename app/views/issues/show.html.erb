@@ -2,7 +2,7 @@
 
 <div class="row">
 	<div class="small-12 columns">
-	<h1>Maintenance request made on <%= @issue.created_at.to_formatted_s(:long) %> by <%= @issue.user.email %></h1>
+	<h1>Maintenance request made on <%= @issue.created_at.to_formatted_s(:long) %> by <%= "#{@issue.user.first_name} #{@issue.user.last_name}"%>.</h1>
 	</div>
 </div>
 <br/>
