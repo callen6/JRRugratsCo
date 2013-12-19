@@ -1,0 +1,32 @@
+<div class="row">
+	<div class="small-12 columns">
+	<h1>Jr Rugrats & Co Properties</h1>
+	</div>
+</div>
+<div class="row">
+	<div class="small-6 columns">
+		<h2>Building Address</h2>
+	</div>
+	<div class="small-6 columns">
+		<h2>Units in Building</h2>
+	</div>
+</div>
+<% @buildings.each do |building| %>
+<div class="row">
+	<div class="small-6 columns">
+		<%= building.address %>
+	</div>
+	<div class="small-4 columns">
+		<%= building.units %>
+	</div>
+	<div class="small-2 columns">
+		<%= button_to "Remove", building_path(building), method: :delete, class: "button tiny" %>
+	</div>
+</div>
+<% end %>
+<br>
+<div class="row">
+	<div class="small-12 columns">
+		<%= link_to "Add New Building", new_building_path, class: "button medium" %>
+	</div>
+</div>

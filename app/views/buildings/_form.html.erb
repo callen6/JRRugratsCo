@@ -1,0 +1,15 @@
+<%= form_for(@building) do |f| %>
+<div class="row">
+	<div class="small-6 columns">
+  <%= f.label :address, "Building address:" %>
+  <%= f.text_field :address %><br />
+  </div>
+  <div class="small-3 columns">
+  <%= f.label :units, "Number of units in building:" %>
+  <%= f.number_field :units %><br />
+  </div>
+  <div class="small-3 columns">
+  <%= f.submit "Add Building", class: "button" %>
+  </div>
+</div>
+<% end %>

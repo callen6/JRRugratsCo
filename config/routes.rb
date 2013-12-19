@@ -2,6 +2,7 @@ JRRugratsCo::Application.routes.draw do
   devise_for :users
   root 'users#home'
   resources :issues
+  resources :buildings
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -9,8 +9,11 @@
 <% if user_signed_in?  %>
 	<% if current_user.admin? %>
 		<div class="row">
-			<div class="small-12 columns">
+			<div class="small-6 columns">
 				<%= link_to "Manage Pending Maintenance Requests", issues_path, class: "button large" %>
+			</div>
+			<div class="small-3 columns">
+				<%= link_to "Manage Buildings", buildings_path, class: "button large" %>
 			</div>
 		</div>
 	<% else %>
