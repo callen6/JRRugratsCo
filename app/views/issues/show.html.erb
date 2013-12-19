@@ -2,33 +2,49 @@
 
 <div class="row">
 	<div class="small-12 columns">
-	<h1>Maintenance request made on <%= @issue.created_at.to_formatted_s(:long) %> by <%= "#{@issue.user.first_name} #{@issue.user.last_name}"%>.</h1>
+	<h2><%= "#{@issue.user.first_name} #{@issue.user.last_name}"%> made this request on <%= @issue.created_at.to_formatted_s(:long) %>.</h2>
 	</div>
 </div>
 <br/>
 <div class="row">
-		<div class="small-4 columns">
+		<div class="small-3 columns">
 		<h3>Issue Description</h3>
 		</div>
-		<div class="small-4 columns">
+		<div class="small-3 columns">
 		<h3>Issue Location</h3>
 		</div>
-		<div class="small-4 columns">
+		<div class="small-3 columns">
 		<h3>Tenant Notes</h3>
+		</div>
+		<div class="small-3 columns">
+		<h3>Priority Level</h3>
 		</div>
 	</div>
 <div class="row">
-	<div class="small-4 columns">
+	<div class="small-3 columns">
 	<%= @issue.description %>
 	</div>
-	<div class="small-4 columns">
+	<div class="small-3 columns">
 	<%= @issue.location %>
 	</div>
-	<div class="small-4 columns">
+	<div class="small-3 columns">
 	<%= @issue.tenant_notes %>
 	</div>
+	<div class="small-3 columns">
+	<% if @issue.priority == 3 %>
+		<div style="color:green;">Low</div>
+	<% elsif @issue.priority == 2 %>
+		<div style="color:yellow;">Medium</div>
+	<% elsif @issue.priority == 1 %>
+		<div style="color:red;">High</div>
+	<% else %>
+		<div>None selected</div>
+	<% end %>
+	</div>
 </div>
-
+<br />
+<br />
+<br />
 <br />
 <% if @issue.contractor_id.blank? %>
 	<div class="row">
@@ -65,7 +81,7 @@
 <% end %>
 
 <div class="row">
-	<div class="small-12 columns">
+	<div class="small-6 columns">
 	<% if @issue.admin_notes.blank? %>
 		<%= form_for(@issue) do |f| %>
 			<%= f.label :admin_notes, "add some notes" %>
@@ -73,13 +89,17 @@
 	  	<%= f.submit "Add Notes", class: "button tiny" %>
 		<% end %>
 	<% else %>
-		<%= @issue.admin_notes %>
+		<h3><%= @issue.admin_notes %></h3>
 		<%= form_for(@issue) do |f| %>
 			<%= f.label :admin_notes %>
 	  	<%= f.text_field :admin_notes %>
 	  	<%= f.submit "Add Notes", class: "button tiny" %>
 		<% end %>
 	<% end %>
+	</div>
+	<div class="small-6 columns">
+	<h3>Call <%= @issue.user.first_name %> at <%= @issue.user.phone %>.</h3>
+	<p>Email <%= @issue.user.first_name %> at <%= @issue.user.email %>.</p>
 	</div>
 </div>
 

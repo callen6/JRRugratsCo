@@ -7,11 +7,25 @@
 <% else %>
 	<% @admin_issues.each do |issue| %>
 	<div class="row">
-		<div class="small-1 columns">
-		<%= "#{issue.priority}" %>
+		<div class="small-3 columns">
+			<% if issue.priority == 3 %>
+				<h4 style="color:green;">Low</h4>
+			<% elsif issue.priority == 2 %>
+				<h4 style="color:yellow;">Medium</h4>
+			<% elsif issue.priority == 1 %>
+				<h4 style="color:red;">High</h4>
+			<% else %>
+				<h4>None selected</h4>
+			<% end %>
 		</div>
-		<div class="small-11 columns">
-			<%= link_to "Manage This Request", "/issues/" + "#{issue.id}" , class: "button large" %>
+		<div class="small-3 columns">
+			<h4><%= issue.building.address %></h4>
+		</div>
+		<div class="small-3 columns">
+			<h4><%= "#{issue.user.first_name}" "#{issue.user.last_name}" %></h4>
+		</div>
+		<div class="small-3 columns">
+			<%= link_to "Manage Request", "/issues/" + "#{issue.id}" , class: "button" %>
 		</div>
 	</div>
 	<% end %>
