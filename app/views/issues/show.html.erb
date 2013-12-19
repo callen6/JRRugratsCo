@@ -105,7 +105,7 @@
 
 
 <div class="row">
-	<div class="small-12 columns">
+	<div class="small-6 columns">
 		<h3>Request Status</h3>
 
 <% if @issue.status.nil? %>
@@ -131,12 +131,10 @@
 		<div><%= f.submit "Update Status", class: "button small" %></div>
 	<% end %>
 	</div>
-</div>
 <% end %>
-
-
-<div class="row">
-	<div class="small-12 columns">
+</div>
+<div class="small-6 columns">
+	<h3>Cost of Maintenance:</h3>
 	<%= form_for(@issue) do |f| %>
 		<%= f.label :cost, "How much did it cost to resolve the request?" %>
 	  <%= f.number_field :cost %>

@@ -8,8 +8,11 @@
 	<div class="small-6 columns">
 		<h2>Building Address</h2>
 	</div>
+	<div class="small-2 columns">
+		<h2>Units</h2>
+	</div>
 	<div class="small-4 columns">
-		<h2>Units in Building</h2>
+		<h2>Remove</h2>
 	</div>
 </div>
 <% @buildings.each do |building| %>
@@ -17,10 +20,10 @@
 	<div class="small-6 columns">
 		<%= building.address %>
 	</div>
-	<div class="small-4 columns">
+	<div class="small-2 columns">
 		<%= building.units %>
 	</div>
-	<div class="small-2 columns">
+	<div class="small-4 columns">
 		<%= button_to "Remove", building_path(building), method: :delete, class: "button tiny" %>
 	</div>
 </div>
