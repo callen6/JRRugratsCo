@@ -1,3 +1,4 @@
+<% if current_user.admin? %>
 <div class="row">
 	<div class="small-12 columns">
 	<h1>Jr Rugrats & Co Properties</h1>
@@ -30,3 +31,6 @@
 		<%= link_to "Add New Building", new_building_path, class: "button medium" %>
 	</div>
 </div>
+<% else %>
+	Only admins have access to this view.
+<% end %>

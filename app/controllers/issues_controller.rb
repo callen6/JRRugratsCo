@@ -39,6 +39,6 @@ class IssuesController < ApplicationController
 	end
 # does not permit user_id to be injected
 	def issue_params
- 		params.require(:issue).permit(:description, :location, :tenant_notes, :status, :priority)
+ 		params.require(:issue).permit(:description, :location, :tenant_notes, :status, :priority, :building_id)
 	end
 end

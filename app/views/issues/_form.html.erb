@@ -1,6 +1,12 @@
 <%= form_for(@issue) do |f| %>
 <div class="row">
 	<div class="small-12 columns">
+  <%= f.label :building %>
+    <%=collection_select(:issue, :building_id, Building.all, :id, :address, prompt: true)%>
+  </div>
+</div>
+<div class="row">
+	<div class="small-12 columns">
   <%= f.label :location, "Where in the unit or building is the issue located?" %>
   <%= f.text_field :location %><br />
   </div>
