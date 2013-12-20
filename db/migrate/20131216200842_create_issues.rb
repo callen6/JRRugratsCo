@@ -6,7 +6,7 @@ class CreateIssues < ActiveRecord::Migration
       t.text :status
       t.text :tenant_notes
       t.text :admin_notes
-      t.decimal :cost
+      t.decimal :cost, precision: 8, scale: 2
       t.datetime :completion_date
       t.belongs_to :contractor, index: true
       t.belongs_to :building, index: true
