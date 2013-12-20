@@ -26,6 +26,6 @@
 
 /*Issue Status Dashboard Styles*/
 
-.issue_status_container {
-
+.dashboard-container {
+    background: rgba(230, 247, 252, 0.7);
 }

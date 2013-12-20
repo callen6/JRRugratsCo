@@ -29,8 +29,8 @@ class IssuesController < ApplicationController
 	end
 
 	def index
-		@issues = current_user.issues.sort_by{|a| a.priority}
-		@admin_issues = Issue.all.sort_by{|a| a.priority}
+		@issues = current_user.issues.order(priority: :asc)
+		@admin_issues = Issue.all.order(priority: :asc)
 	end
 
 	private
