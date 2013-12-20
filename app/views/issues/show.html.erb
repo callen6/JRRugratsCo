@@ -108,41 +108,42 @@
 	<div class="small-6 columns">
 		<h3>Request Status</h3>
 
-<% if @issue.status.nil? %>
-<div><%= "Request submitted" %></div>
-<br />
-<%= form_for(@issue) do |f| %>
-	<div><%= f.radio_button(:status, "Request received") %>
-		<%= f.label(:status, "Request received")  %></div>
-	<div><%= f.radio_button(:status, "Maintenance in progress")  %>
-		<%= f.label(:status, "Maintenance in progress") %></div>
-	<div><%= f.radio_button(:status, "Completed") %>
-		<%= f.label(:status, "Completed") %></div>
-	<div><%= f.submit "Update Status", class: "button tiny" %></div>
-	<% end %>
-<% else %>
-	<%= form_for(@issue) do |f| %>
-		<div><%= f.radio_button(:status, "Request received") %>
-			<%= f.label(:status, "Request received")  %></div>
-		<div><%= f.radio_button(:status, "Maintenance in progress")  %>
-			<%= f.label(:status, "Maintenance in progress") %></div>
-		<div><%= f.radio_button(:status, "Completed") %>
-			<%= f.label(:status, "Completed") %></div>
-		<div><%= f.submit "Update Status", class: "button small" %></div>
-	<% end %>
-	</div>
-<% end %>
-</div>
-<div class="small-6 columns">
-	<h3>Cost of Maintenance:</h3>
-	<%= form_for(@issue) do |f| %>
-		<%= f.label :cost, "How much did it cost to resolve the request?" %>
-	  <%= f.number_field :cost %>
+		<% if @issue.status.nil? %>
+		<div><%= "Request submitted" %></div>
 		<br />
-	  <%= f.submit "Update Cost", class: "button small" %>
-	<% end %>
+		<%= form_for(@issue) do |f| %>
+			<div><%= f.radio_button(:status, "Request received") %>
+				<%= f.label(:status, "Request received")  %></div>
+			<div><%= f.radio_button(:status, "Maintenance in progress")  %>
+				<%= f.label(:status, "Maintenance in progress") %></div>
+			<div><%= f.radio_button(:status, "Completed") %>
+				<%= f.label(:status, "Completed") %></div>
+			<div><%= f.submit "Update Status", class: "button tiny" %></div>
+			<% end %>
+		<% else %>
+			<%= form_for(@issue) do |f| %>
+				<div><%= f.radio_button(:status, "Request received") %>
+					<%= f.label(:status, "Request received")  %></div>
+				<div><%= f.radio_button(:status, "Maintenance in progress")  %>
+					<%= f.label(:status, "Maintenance in progress") %></div>
+				<div><%= f.radio_button(:status, "Completed") %>
+					<%= f.label(:status, "Completed") %></div>
+				<div><%= f.submit "Update Status", class: "button small" %></div>
+			<% end %>
+		<% end %>
+	</div>
+	<div class="small-6 columns">
+		<h3>Cost of Maintenance:</h3>
+		<%= form_for(@issue) do |f| %>
+			<%= f.label :cost, "How much did it cost to resolve the request?" %>
+		  <%= f.number_field :cost %>
+			<br />
+		  <%= f.submit "Update Cost", class: "button small" %>
+		<% end %>
 	</div>
 </div>
+
+
 <div class="row">
 	<div class="small-12 columns">
 		<%= link_to "Text " + "#{@issue.id}" , issue_path, class: "button small" %>
