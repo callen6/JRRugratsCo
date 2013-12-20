@@ -84,7 +84,7 @@
 	<div class="small-6 columns">
 	<% if @issue.admin_notes.blank? %>
 		<%= form_for(@issue) do |f| %>
-			<%= f.label :admin_notes, "add some notes" %>
+			<%= f.label :admin_notes, "Admin notes:" %>
 	  	<%= f.text_field :admin_notes %>
 	  	<%= f.submit "Add Notes", class: "button tiny" %>
 		<% end %>

@@ -2,6 +2,17 @@
 
 /*Global Styles*/
 
+.button {
+    font-family: "Montserrat";
+}
+h1 {
+    font-family: "Karla";
+}
+
+/*Nav Bar Styles*/
+.title-area a {
+    font-family: "Prociono";
+}
 
 /*Home Page Styles*/
 #background {
