@@ -22,7 +22,7 @@
 			<h4><%= issue.building.address %></h4>
 		</div>
 		<div class="small-3 columns">
-			<h4><%= "#{issue.user.first_name}" "#{issue.user.last_name}" %></h4>
+			<h4><%= "#{issue.user.first_name} " "#{issue.user.last_name}" %></h4>
 		</div>
 		<div class="small-3 columns">
 			<%= link_to "Manage Request", "/issues/" + "#{issue.id}" , class: "button" %>
